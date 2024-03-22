@@ -19,6 +19,7 @@
         [TestCase("1,sdfksdfsdfs", ExpectedResult = 1)]
         [TestCase("//#\n2#5", ExpectedResult = 7)]
         [TestCase("//,\n2,ff,100", ExpectedResult = 102)]
+        [TestCase("//[***]\n11***22***33", ExpectedResult = 66)]
         public int GivenValidInputsReturnExpectedLength(string? numbers)
         {
             return _calculatorApp.Process(numbers);
