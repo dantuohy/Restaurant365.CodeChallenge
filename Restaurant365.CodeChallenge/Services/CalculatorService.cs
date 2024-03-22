@@ -1,6 +1,8 @@
-﻿namespace Restaurant365.CodeChallenge.Services
+﻿using Restaurant365.CodeChallenge.Services.Interfaces;
+
+namespace Restaurant365.CodeChallenge.Services
 {
-    public class CalculatorService
+    public class CalculatorService : ICalculatorService
     {
         public int Calculate(List<int> numbers)
         {

@@ -1,4 +1,6 @@
-﻿namespace Restaurant365.CodeChallenge.Tests
+﻿using Restaurant365.CodeChallenge.Services;
+
+namespace Restaurant365.CodeChallenge.Tests
 {
     internal class CalculatorAppTests
     {
@@ -7,7 +9,7 @@
         [SetUp]
         public void Setup()
         {
-            _calculatorApp = new CalculatorApp();
+            _calculatorApp = new CalculatorApp(new ValidationService(), new InputConversionService(), new CalculatorService(), new SplitService());
         }
 
         [TestCase("20", ExpectedResult = 20)]

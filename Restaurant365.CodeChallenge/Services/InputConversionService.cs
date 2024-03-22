@@ -1,6 +1,8 @@
-﻿namespace Restaurant365.CodeChallenge.Services
+﻿using Restaurant365.CodeChallenge.Services.Interfaces;
+
+namespace Restaurant365.CodeChallenge.Services
 {
-    public class InputConversionService
+    public class InputConversionService : IInputConversionService
     {
         public List<int> Convert(List<string> inputData, int limit = 1000)
         {

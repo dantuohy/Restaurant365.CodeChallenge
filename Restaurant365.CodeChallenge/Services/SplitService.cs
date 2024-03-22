@@ -1,8 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using Restaurant365.CodeChallenge.Services.Interfaces;
+using System.Text.RegularExpressions;
 
 namespace Restaurant365.CodeChallenge.Services
 {
-    public class SplitService
+    public class SplitService : ISplitService
     {
         public List<string> Split(string input)
         {

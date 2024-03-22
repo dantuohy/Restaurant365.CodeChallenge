@@ -1,8 +1,9 @@
 ﻿using Restaurant365.CodeChallenge.Models;
+using Restaurant365.CodeChallenge.Services.Interfaces;
 
 namespace Restaurant365.CodeChallenge.Services
 {
-    public class ValidationService
+    public class ValidationService : IValidationService
     {
         public ValidationResponse ValidateInput(string input)
         {

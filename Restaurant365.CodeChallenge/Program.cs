@@ -1,10 +1,18 @@
-﻿namespace Restaurant365.CodeChallenge
+﻿using static System.Net.Mime.MediaTypeNames;
+using System;
+using Microsoft.Extensions.DependencyInjection;
+using Restaurant365.CodeChallenge.Services.Interfaces;
+using Restaurant365.CodeChallenge.Services;
+
+namespace Restaurant365.CodeChallenge
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            CalculatorApp app = new CalculatorApp();
+            var services = CreateServices();
+
+            var app = services.GetRequiredService<CalculatorApp>();
 
             Console.WriteLine("Provide your calculation");
 
@@ -13,6 +21,19 @@
             var calculationResult = app.Process(calculation);
 
             Console.WriteLine($"Result: {calculationResult}");
+        }
+
+        private static ServiceProvider CreateServices()
+        {
+            var serviceProvider = new ServiceCollection()
+                .AddTransient<ICalculatorService, CalculatorService>()
+                .AddTransient<IInputConversionService, InputConversionService>()
+                .AddTransient<ISplitService, SplitService>()
+                .AddTransient<IValidationService, ValidationService>()
+                .AddSingleton<CalculatorApp>()
+                .BuildServiceProvider();
+
+            return serviceProvider;
         }
     }
 }

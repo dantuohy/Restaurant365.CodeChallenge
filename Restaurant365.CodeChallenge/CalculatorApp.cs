@@ -1,20 +1,21 @@
 ﻿using Restaurant365.CodeChallenge.Services;
+using Restaurant365.CodeChallenge.Services.Interfaces;
 
 namespace Restaurant365.CodeChallenge
 {
     public class CalculatorApp
     {
-        private ValidationService _validationService;
-        private InputConversionService _inputConversionService;
-        private CalculatorService _calculatorService;
-        private SplitService _splitService;
+        private readonly IValidationService _validationService;
+        private readonly IInputConversionService _inputConversionService;
+        private readonly ICalculatorService _calculatorService;
+        private readonly ISplitService _splitService;
 
-        public CalculatorApp() 
+        public CalculatorApp(IValidationService validationService, IInputConversionService inputConversionService, ICalculatorService calculatorService, ISplitService splitService)
         {
-            _validationService = new ValidationService();
-            _inputConversionService = new InputConversionService();
-            _calculatorService = new CalculatorService();
-            _splitService = new SplitService();
+            _validationService = validationService;
+            _inputConversionService = inputConversionService;
+            _calculatorService = calculatorService;
+            _splitService = splitService;
         }
         public int Process(string input)
         {
