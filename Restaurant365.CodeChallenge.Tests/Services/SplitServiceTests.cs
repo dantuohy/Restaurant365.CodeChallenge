@@ -41,6 +41,7 @@ namespace Restaurant365.CodeChallenge.Tests.Services
         [TestCase("//#\n2#5", new string[] { "2", "5" })]
         [TestCase("//,\n2,ff,100", new string[] { "2", "ff", "100" })]
         [TestCase("//[***]\n11***22***33", new string[] { "11", "22", "33" })]
+        [TestCase("//[*][!!][r9r]\n11r9r22*hh*33!!44", new string[] { "11", "22", "hh", "33", "44" })]
         [TestCase(null, new string[] { })]
         public void GivenValidInputsReturnExpectedItems(string? numbers, string[] expectedResult)
         {

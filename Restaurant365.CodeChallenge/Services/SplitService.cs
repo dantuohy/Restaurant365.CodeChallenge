@@ -12,19 +12,22 @@ namespace Restaurant365.CodeChallenge.Services
             }
 
             var delimiters = new List<string> { ",", "\\n", "\n" };
-            var customDelimiter = Regex.Match(input, @"(?<=//\[).*(?=\])");
+            var matches = Regex.Matches(input, @"\[(.*?)\]");
 
-            if (customDelimiter.Success)
+            if (matches.Any())
             {
-                delimiters.Add(customDelimiter.Groups[0].Value);
+                foreach (Match match in matches)
+                {
+                    delimiters.Add(match.Groups[1].Value);
+                }
                 input = input.Split(["\\n", "\n"], StringSplitOptions.None)[1];
             }
             else
             {
-                customDelimiter = Regex.Match(input, @"(?<=//).*(?=\n|\\n)");
-                if (customDelimiter.Success)
+                var match = Regex.Match(input, @"(?<=//).*(?=\n|\\n)");
+                if (match.Success)
                 {
-                    delimiters.Add(customDelimiter.Groups[0].Value);
+                    delimiters.Add(match.Groups[0].Value);
                     input = input.Split(["\\n", "\n"], StringSplitOptions.None)[1];
                 }
             }
