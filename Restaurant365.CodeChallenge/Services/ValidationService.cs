@@ -13,5 +13,15 @@ namespace Restaurant365.CodeChallenge.Services
 
             return ValidationResponse.Valid();
         }
+
+        public ValidationResponse ValidateInputNumbers(List<int> input)
+        {
+            if (input.Any(x => x < 0))
+            {
+                return ValidationResponse.Invalid($"Invalid negative number(s) in  calculation: {string.Join(", ", input.Where(x => x < 0))}");
+            }
+
+            return ValidationResponse.Valid();
+        }
     }
 }

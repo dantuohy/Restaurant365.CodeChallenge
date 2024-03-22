@@ -29,6 +29,13 @@ namespace Restaurant365.CodeChallenge
 
             var numbersToCalculate = _inputConversionService.Convert(splitInput);
 
+            validationResponse = _validationService.ValidateInputNumbers(numbersToCalculate);
+
+            if (!validationResponse.IsValid)
+            {
+                throw new Exception(validationResponse.Message);
+            }
+
             return _calculatorService.Calculate(numbersToCalculate);
         }
     }

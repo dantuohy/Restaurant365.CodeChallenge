@@ -35,5 +35,24 @@ namespace Restaurant365.CodeChallenge.Tests.Services
             Assert.IsFalse(response.IsValid);
             Assert.IsNotNull(response.Message);
         }
+
+        [Test]
+        public void GivenTestingValidateInputsNumbers_AndNegativeNumber_ReturnExpectedResult()
+        {
+            var response = _validationService.ValidateInputNumbers([0, 1, -1]);
+            Assert.IsFalse(response.IsValid);
+            Assert.IsNotNull(response.Message);
+            Assert.IsTrue(response.Message.Contains("-1"));
+        }
+
+        [Test]
+        public void GivenTestingValidateInputsNumbers_AndNegativeNumbers_ReturnExpectedResult()
+        {
+            var response = _validationService.ValidateInputNumbers([-2, 0, 1, -1]);
+            Assert.IsFalse(response.IsValid);
+            Assert.IsNotNull(response.Message);
+            Assert.IsTrue(response.Message.Contains("-1"));
+            Assert.IsTrue(response.Message.Contains("-2"));
+        }
     }
 }
