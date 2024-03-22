@@ -11,7 +11,9 @@
         }
 
         [TestCase("20", ExpectedResult = 20)]
-        [TestCase("1,5000", ExpectedResult = 5001)]
+        [TestCase("1,1000", ExpectedResult = 1001)]
+        [TestCase("2,1001,6", ExpectedResult = 8)]
+        [TestCase("1,1001", ExpectedResult = 1)]
         [TestCase("sdfksdfsdfs", ExpectedResult = 0)]
         [TestCase("sdfksdfsdfs,1", ExpectedResult = 1)]
         [TestCase("1,sdfksdfsdfs", ExpectedResult = 1)]
