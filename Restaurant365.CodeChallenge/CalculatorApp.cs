@@ -18,14 +18,15 @@ namespace Restaurant365.CodeChallenge
         }
         public int Process(string input)
         {
-            var splitInput = _splitService.Split(input);
-
-            var validationResponse = _validationService.ValidateInputNumbers(splitInput);
+            var validationResponse = _validationService.ValidateInput(input);
 
             if (!validationResponse.IsValid)
             {
                 throw new Exception(validationResponse.Message);
             }
+
+            var splitInput = _splitService.Split(input);
+
             var numbersToCalculate = _inputConversionService.Convert(splitInput);
 
             return _calculatorService.Calculate(numbersToCalculate);

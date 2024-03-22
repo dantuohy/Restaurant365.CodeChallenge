@@ -1,11 +1,4 @@
-﻿using Restaurant365.CodeChallenge.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Restaurant365.CodeChallenge.Tests
+﻿namespace Restaurant365.CodeChallenge.Tests
 {
     internal class CalculatorAppTests
     {

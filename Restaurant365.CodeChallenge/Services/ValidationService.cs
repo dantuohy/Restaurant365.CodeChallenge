@@ -13,14 +13,5 @@ namespace Restaurant365.CodeChallenge.Services
 
             return ValidationResponse.Valid();
         }
-        public ValidationResponse ValidateInputNumbers(List<string> input)
-        {
-            if(input.Count() > 2)
-            {
-                return ValidationResponse.Invalid("Maximum two numbers allowed");
-            }
-
-            return ValidationResponse.Valid();
-        }
     }
 }
