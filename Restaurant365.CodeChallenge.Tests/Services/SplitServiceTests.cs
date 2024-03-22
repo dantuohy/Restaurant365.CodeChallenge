@@ -38,6 +38,8 @@ namespace Restaurant365.CodeChallenge.Tests.Services
         [TestCase("1\\n5000", new string[] { "1", "5000" })]
         [TestCase("1,5000\\n343", new string[] { "1", "5000", "343" })]
         [TestCase("1\\n5000,343", new string[] { "1", "5000", "343" })]
+        [TestCase("//#\n2#5", new string[] { "2", "5" })]
+        [TestCase("//,\n2,ff,100", new string[] { "2", "ff", "100" })]
         [TestCase(null, new string[] { })]
         public void GivenValidInputsReturnExpectedItems(string? numbers, string[] expectedResult)
         {
