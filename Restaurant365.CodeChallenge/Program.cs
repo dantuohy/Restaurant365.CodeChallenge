@@ -14,13 +14,16 @@ namespace Restaurant365.CodeChallenge
 
             var app = services.GetRequiredService<CalculatorApp>();
 
-            Console.WriteLine("Provide your calculation");
+            while (true)
+            {
+                Console.WriteLine("Provide your calculation");
 
-            var calculation = Console.ReadLine();
+                var calculation = Console.ReadLine();
 
-            var calculationResult = app.Process(calculation);
+                var calculationResult = app.Process(calculation);
 
-            Console.WriteLine($"Result: {calculationResult}");
+                Console.WriteLine($"Result: {calculationResult}");
+            }
         }
 
         private static ServiceProvider CreateServices()
