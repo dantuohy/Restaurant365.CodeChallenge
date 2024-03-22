@@ -2,6 +2,7 @@
 {
     public class CalculationArguments
     {
+        public Operator Operator = Operator.ADD;
         public string? Calculation;
         public string? CustomDelimiter;
         public bool AllowNegatives;

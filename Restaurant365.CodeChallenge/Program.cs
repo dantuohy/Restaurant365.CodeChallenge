@@ -2,6 +2,7 @@
 using Restaurant365.CodeChallenge.Services.Interfaces;
 using Restaurant365.CodeChallenge.Services;
 using Restaurant365.CodeChallenge.Models;
+using Restaurant365.CodeChallenge.Extensions;
 
 namespace Restaurant365.CodeChallenge
 {
@@ -24,10 +25,17 @@ namespace Restaurant365.CodeChallenge
                 arguments.CustomDelimiter = RequestCustomDelimiter();
                 arguments.AllowNegatives = RequestNegativeNumbers();
                 arguments.UpperBound = RequestUpperBound();
+                arguments.Operator = RequestOperator();
 
-                var calculationResult = app.Process(arguments);
-
-                Console.WriteLine($"Result: {calculationResult.Formula} = {calculationResult.Result}");
+                try
+                {
+                    var calculationResult = app.Process(arguments);
+                    Console.WriteLine($"Result: {calculationResult.Formula} = {calculationResult.Result}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
@@ -43,7 +51,7 @@ namespace Restaurant365.CodeChallenge
 
             while (result == null)
             {
-                Console.WriteLine("Allow Negative? (Y/N or press enter for default yes");
+                Console.WriteLine("Allow Negative? (Y/N or press enter for default yes)");
                 var input = Console.ReadLine();
 
                 if (input == null || input == string.Empty || input.Equals("Y", StringComparison.InvariantCultureIgnoreCase))
@@ -65,7 +73,7 @@ namespace Restaurant365.CodeChallenge
 
             while (result == null)
             {
-                Console.WriteLine("Set upper bound? (any positive number or press enter for default of no upper bound");
+                Console.WriteLine("Set upper bound? (any positive number or press enter for default of no upper bound)");
 
                 var input = Console.ReadLine();
 
@@ -85,7 +93,20 @@ namespace Restaurant365.CodeChallenge
             return result.Value;
         }
 
+        private static Operator RequestOperator()
+        {
+            Operator? result = null;
 
+            while (result == null)
+            {
+                Console.WriteLine("Operator (+ - * / default +)");
+                var input = Console.ReadLine();
+
+                result = OperatorExtensions.StringToOperator(input);
+            }
+
+            return result.Value;
+        }
 
         private static ServiceProvider CreateServices()
         {

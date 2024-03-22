@@ -1,5 +1,4 @@
 ﻿using Restaurant365.CodeChallenge.Models;
-using Restaurant365.CodeChallenge.Services;
 using Restaurant365.CodeChallenge.Services.Interfaces;
 
 namespace Restaurant365.CodeChallenge
@@ -40,8 +39,8 @@ namespace Restaurant365.CodeChallenge
 
             return new CalculationResult
             {
-                Result = _calculatorService.Calculate(numbersToCalculate),
-                Formula = _calculatorService.GetFormula(numbersToCalculate)
+                Result = _calculatorService.Calculate(numbersToCalculate, arguments.Operator),
+                Formula = _calculatorService.GetFormula(numbersToCalculate, arguments.Operator)
             };
         }
     }

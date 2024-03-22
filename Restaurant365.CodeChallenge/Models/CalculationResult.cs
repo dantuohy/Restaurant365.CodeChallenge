@@ -2,7 +2,7 @@
 {
     public class CalculationResult
     {
-        public int Result;
+        public decimal Result;
         public required string Formula;
     }
 }
