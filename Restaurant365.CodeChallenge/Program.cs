@@ -1,8 +1,7 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Restaurant365.CodeChallenge.Services.Interfaces;
 using Restaurant365.CodeChallenge.Services;
+using Restaurant365.CodeChallenge.Models;
 
 namespace Restaurant365.CodeChallenge
 {
@@ -16,15 +15,77 @@ namespace Restaurant365.CodeChallenge
 
             while (true)
             {
+                var arguments = new CalculationArguments();
+
                 Console.WriteLine("Provide your calculation");
 
-                var calculation = Console.ReadLine();
+                arguments.Calculation = Console.ReadLine();
 
-                var calculationResult = app.Process(calculation);
+                arguments.CustomDelimiter = RequestCustomDelimiter();
+                arguments.AllowNegatives = RequestNegativeNumbers();
+                arguments.UpperBound = RequestUpperBound();
+
+                var calculationResult = app.Process(arguments);
 
                 Console.WriteLine($"Result: {calculationResult.Formula} = {calculationResult.Result}");
             }
         }
+
+        private static string? RequestCustomDelimiter()
+        {
+            Console.WriteLine("Custom Delimiter? (Enter to use default)?");
+            return Console.ReadLine();
+        }
+
+        private static bool RequestNegativeNumbers()
+        {
+            bool? result = null;
+
+            while (result == null)
+            {
+                Console.WriteLine("Allow Negative? (Y/N or press enter for default yes");
+                var input = Console.ReadLine();
+
+                if (input == null || input == string.Empty || input.Equals("Y", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    result = true;
+                }
+                else if (input.Equals("N", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    result = false;
+                }
+            }
+
+            return result.Value;
+        }
+
+        private static int RequestUpperBound()
+        {
+            int? result = null;
+
+            while (result == null)
+            {
+                Console.WriteLine("Set upper bound? (any positive number or press enter for default of no upper bound");
+
+                var input = Console.ReadLine();
+
+                if(input == null || input == string.Empty)
+                {
+                    return int.MaxValue;
+                }
+
+                int upperBound;
+
+                if (int.TryParse(input, out upperBound) && upperBound > 0)
+                {
+                    result = upperBound;
+                }
+            }
+
+            return result.Value;
+        }
+
+
 
         private static ServiceProvider CreateServices()
         {

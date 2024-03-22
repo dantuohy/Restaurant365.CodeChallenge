@@ -2,6 +2,6 @@
 {
     public interface IInputConversionService
     {
-        List<int> Convert(List<string> inputData, int limit = 1000);
+        List<int> Convert(List<string> inputData, int? limit);
     }
 }

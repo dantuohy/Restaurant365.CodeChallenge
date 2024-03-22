@@ -5,6 +5,6 @@ namespace Restaurant365.CodeChallenge.Services.Interfaces
     public interface IValidationService
     {
         ValidationResponse ValidateInput(string input);
-        ValidationResponse ValidateInputNumbers(List<int> input);
+        ValidationResponse ValidateInputNumbers(List<int> input, bool allowNegativeNumbers);
     }
 }

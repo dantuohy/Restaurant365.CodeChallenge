@@ -3,6 +3,6 @@
     public class CalculationResult
     {
         public int Result;
-        public string Formula;
+        public required string Formula;
     }
 }

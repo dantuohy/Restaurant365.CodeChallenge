@@ -22,7 +22,7 @@ namespace Restaurant365.CodeChallenge.Tests.Services
         [TestCase(new string[] { }, new int[] { })]
         public void GivenValidInputsReturnExpectedResult(string[] numbers, int[] expectedResult)
         {
-            Assert.That(_conversionService.Convert(numbers.ToList()), Is.EqualTo(expectedResult));
+            Assert.That(_conversionService.Convert(numbers.ToList(), null), Is.EqualTo(expectedResult));
         }
 
         [TestCase(new string[] { "20" }, 1000, new int[] { 20 })]

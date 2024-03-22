@@ -7,12 +7,23 @@ namespace Restaurant365.CodeChallenge.Services
     {
         public List<string> Split(string input)
         {
+            return Split(input, null);
+        }
+
+        public List<string> Split(string input, string? customDelimiter)
+        {
             if(input == null)
             {
                 return new List<string>();
             }
 
             var delimiters = new List<string> { ",", "\\n", "\n" };
+
+            if (customDelimiter != null)
+            {
+                delimiters.Add(customDelimiter);
+            }
+
             var matches = Regex.Matches(input, @"\[(.*?)\]");
 
             if (matches.Any())

@@ -18,20 +18,20 @@ namespace Restaurant365.CodeChallenge
             _calculatorService = calculatorService;
             _splitService = splitService;
         }
-        public CalculationResult Process(string input)
+        public CalculationResult Process(CalculationArguments arguments)
         {
-            var validationResponse = _validationService.ValidateInput(input);
+            var validationResponse = _validationService.ValidateInput(arguments.Calculation);
 
             if (!validationResponse.IsValid)
             {
                 throw new Exception(validationResponse.Message);
             }
 
-            var splitInput = _splitService.Split(input);
+            var splitInput = _splitService.Split(arguments.Calculation, arguments.CustomDelimiter);
 
-            var numbersToCalculate = _inputConversionService.Convert(splitInput);
+            var numbersToCalculate = _inputConversionService.Convert(splitInput, arguments.UpperBound);
 
-            validationResponse = _validationService.ValidateInputNumbers(numbersToCalculate);
+            validationResponse = _validationService.ValidateInputNumbers(numbersToCalculate, arguments.AllowNegatives);
 
             if (!validationResponse.IsValid)
             {

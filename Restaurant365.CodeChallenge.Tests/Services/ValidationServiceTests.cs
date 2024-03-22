@@ -39,7 +39,7 @@ namespace Restaurant365.CodeChallenge.Tests.Services
         [Test]
         public void GivenTestingValidateInputsNumbers_AndNegativeNumber_ReturnExpectedResult()
         {
-            var response = _validationService.ValidateInputNumbers([0, 1, -1]);
+            var response = _validationService.ValidateInputNumbers([0, 1, -1], false);
             Assert.IsFalse(response.IsValid);
             Assert.IsNotNull(response.Message);
             Assert.IsTrue(response.Message.Contains("-1"));
@@ -48,11 +48,27 @@ namespace Restaurant365.CodeChallenge.Tests.Services
         [Test]
         public void GivenTestingValidateInputsNumbers_AndNegativeNumbers_ReturnExpectedResult()
         {
-            var response = _validationService.ValidateInputNumbers([-2, 0, 1, -1]);
+            var response = _validationService.ValidateInputNumbers([-2, 0, 1, -1], false);
             Assert.IsFalse(response.IsValid);
             Assert.IsNotNull(response.Message);
             Assert.IsTrue(response.Message.Contains("-1"));
             Assert.IsTrue(response.Message.Contains("-2"));
+        }
+
+        [Test]
+        public void GivenTestingValidateInputsNumbers_AndNegativeNumberAllowed_ReturnExpectedResult()
+        {
+            var response = _validationService.ValidateInputNumbers([0, 1, -1], true);
+            Assert.IsTrue(response.IsValid);
+            Assert.IsNull(response.Message);
+        }
+
+        [Test]
+        public void GivenTestingValidateInputsNumbers_AndNegativeNumbersAllowed_ReturnExpectedResult()
+        {
+            var response = _validationService.ValidateInputNumbers([-2, 0, 1, -1], true);
+            Assert.IsTrue(response.IsValid);
+            Assert.IsNull(response.Message);
         }
     }
 }
