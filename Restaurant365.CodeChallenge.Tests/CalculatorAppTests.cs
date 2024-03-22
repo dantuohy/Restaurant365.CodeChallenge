@@ -23,9 +23,9 @@ namespace Restaurant365.CodeChallenge.Tests
         [TestCase("//,\n2,ff,100", ExpectedResult = 102)]
         [TestCase("//[***]\n11***22***33", ExpectedResult = 66)]
         [TestCase("//[*][!!][r9r]\n11r9r22*hh*33!!44", ExpectedResult = 110)]
-        public int GivenValidInputsReturnExpectedLength(string? numbers)
+        public int? GivenValidInputsReturnExpectedLength(string? numbers)
         {
-            return _calculatorApp.Process(numbers);
+            return _calculatorApp.Process(numbers)?.Result;
         }
 
         public void GivenNullInput_ThrowsError()

@@ -1,4 +1,5 @@
-﻿using Restaurant365.CodeChallenge.Services;
+﻿using Restaurant365.CodeChallenge.Models;
+using Restaurant365.CodeChallenge.Services;
 using Restaurant365.CodeChallenge.Services.Interfaces;
 
 namespace Restaurant365.CodeChallenge
@@ -17,7 +18,7 @@ namespace Restaurant365.CodeChallenge
             _calculatorService = calculatorService;
             _splitService = splitService;
         }
-        public int Process(string input)
+        public CalculationResult Process(string input)
         {
             var validationResponse = _validationService.ValidateInput(input);
 
@@ -37,7 +38,11 @@ namespace Restaurant365.CodeChallenge
                 throw new Exception(validationResponse.Message);
             }
 
-            return _calculatorService.Calculate(numbersToCalculate);
+            return new CalculationResult
+            {
+                Result = _calculatorService.Calculate(numbersToCalculate),
+                Formula = _calculatorService.GetFormula(numbersToCalculate)
+            };
         }
     }
 }

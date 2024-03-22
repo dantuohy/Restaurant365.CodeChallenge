@@ -3,5 +3,6 @@
     public interface ICalculatorService
     {
         int Calculate(List<int> numbers);
+        string GetFormula(List<int> numbers);
     }
 }

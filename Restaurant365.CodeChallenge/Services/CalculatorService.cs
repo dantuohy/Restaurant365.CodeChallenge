@@ -8,5 +8,10 @@ namespace Restaurant365.CodeChallenge.Services
         {
             return numbers == null ? 0 : numbers.Sum(x => x);
         }
+
+        public string GetFormula(List<int> numbers)
+        {
+            return string.Join("+", numbers);
+        }
     }
 }

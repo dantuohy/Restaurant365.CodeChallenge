@@ -22,7 +22,7 @@ namespace Restaurant365.CodeChallenge
 
                 var calculationResult = app.Process(calculation);
 
-                Console.WriteLine($"Result: {calculationResult}");
+                Console.WriteLine($"Result: {calculationResult.Formula} = {calculationResult.Result}");
             }
         }
 
